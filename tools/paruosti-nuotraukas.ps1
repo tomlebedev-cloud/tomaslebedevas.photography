@@ -240,7 +240,7 @@ foreach ($p in $kunai) {
     $sb = New-Object System.Text.StringBuilder
     [void]$sb.AppendLine('<section class="sekcija" id="' + $p.Id + '">')
     [void]$sb.AppendLine('  <div class="sekcija__juosta">')
-    [void]$sb.AppendLine('    <h2>' + (Htm $p.Vardas) + '</h2>')
+    [void]$sb.AppendLine('    <h1>' + (Htm $p.Vardas) + '</h1>')
     [void]$sb.AppendLine('    <p>' + (Htm $p.Tekstas) + '</p>')
     [void]$sb.AppendLine('    <span class="sekcija__kiekis">' + $p.Kadrai.Count + ' photographs</span>')
     [void]$sb.AppendLine('    <div class="lankas"></div>')

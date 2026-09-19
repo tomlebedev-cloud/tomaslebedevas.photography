@@ -14,6 +14,7 @@
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="en_GB">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <link rel="canonical" href="https://tomaslebedevas.photography/">
 <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
 <link rel="icon" type="image/png" sizes="48x48" href="icons/favicon-48.png">
@@ -35,14 +36,45 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Tomas Lebedevas",
-  "jobTitle": "Photographer",
-  "url": "https://tomaslebedevas.photography/",
-  "email": "tomas.lebedevas@icloud.com",
-  "sameAs": ["https://www.instagram.com/tom.lebedev_photo/"],
-  "address": { "@type": "PostalAddress", "addressLocality": "Vilnius", "addressCountry": "LT" },
-  "knowsAbout": ["Travel photography", "Wildlife photography", "Street photography"]
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://tomaslebedevas.photography/#website",
+      "name": "Tomas Lebedevas \u2014 Photography",
+      "url": "https://tomaslebedevas.photography/",
+      "inLanguage": "en",
+      "publisher": { "@id": "https://tomaslebedevas.photography/#tomas" }
+    },
+    {
+      "@type": "ImageGallery",
+      "@id": "https://tomaslebedevas.photography/",
+      "name": "Tomas Lebedevas \u2014 Photography",
+      "description": "Travel and wildlife photography from Vilnius, Lithuania. Work from Tanzania, Morocco, the United States, Italy and beyond.",
+      "url": "https://tomaslebedevas.photography/",
+      "inLanguage": "en",
+      "primaryImageOfPage": "https://tomaslebedevas.photography/photos/hero/harbour-2000.jpg",
+      "isPartOf": { "@id": "https://tomaslebedevas.photography/#website" },
+      "author": { "@id": "https://tomaslebedevas.photography/#tomas" },
+      "copyrightHolder": { "@id": "https://tomaslebedevas.photography/#tomas" },
+      "hasPart": [
+        { "@type": "ImageGallery", "name": "Tanzania",  "url": "https://tomaslebedevas.photography/tanzania.html" },
+        { "@type": "ImageGallery", "name": "Morocco",   "url": "https://tomaslebedevas.photography/morocco.html" },
+        { "@type": "ImageGallery", "name": "Elsewhere", "url": "https://tomaslebedevas.photography/elsewhere.html" }
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://tomaslebedevas.photography/#tomas",
+      "name": "Tomas Lebedevas",
+      "jobTitle": "Photographer",
+      "url": "https://tomaslebedevas.photography/",
+      "image": "https://tomaslebedevas.photography/og-image.png",
+      "email": "tomas.lebedevas@icloud.com",
+      "sameAs": ["https://www.instagram.com/tom.lebedev_photo/"],
+      "address": { "@type": "PostalAddress", "addressLocality": "Vilnius", "addressCountry": "LT" },
+      "knowsAbout": ["Travel photography", "Wildlife photography", "Street photography"]
+    }
+  ]
 }
 </script>
 <header class="site-header">

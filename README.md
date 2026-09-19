@@ -70,6 +70,16 @@ tarp `GALLERY:START` ir `GALLERY:END`. Jau apdorotas nuotraukas praleidžia.
 Dvi miniatiūrų versijos reikalingos `srcset`: telefonas ir ne-retina ekranas
 atsisiunčia 400 px, o retina — 700 px.
 
+**4b. Atnaujink svetainės žemėlapį**
+
+```
+powershell -ExecutionPolicy Bypass -File tools\sitemap.ps1
+```
+
+`sitemap.xml` išvardija ne tik puslapius, bet ir kiekvieną pilno dydžio
+nuotrauką — be to Google Images naujų kadrų nepamatys. Skriptas persirašo
+failą iš puslapių turinio, tad paleisk jį po kiekvieno importo.
+
 **5. Nusiųsk į GitHub**
 
 ```
@@ -84,6 +94,35 @@ Puslapis atsinaujina per ~1 minutę.
 > viršuje (`photography-v16` → `v16`). Service worker talpina senas versijas, ir be
 > šito grįžtantis lankytojas dar ilgai matys seną puslapį.
 
+## Kad puslapį rastų Google
+
+Pati svetainė paruošta: `robots.txt` leidžia viską, `sitemap.xml` išvardija
+puslapius ir 55 nuotraukas, kiekvienas puslapis turi `title`, `description`,
+`canonical`, `h1` ir schema.org duomenis. **Bet naujo domeno Google savaime
+neranda** — jis neturi iš kur apie jį sužinoti. Šitie žingsniai daromi ranka:
+
+**1. Google Search Console** — svarbiausias žingsnis
+
+1. [search.google.com/search-console](https://search.google.com/search-console) → *Add property* → **Domain** → `tomaslebedevas.photography`
+2. Google duos `TXT` įrašą, panašų į `google-site-verification=abc123...`
+3. Cloudflare pulte → DNS → *Add record*: tipas `TXT`, vardas `@`, turinys — iš Google. Patvirtinimas suveikia per kelias minutes.
+4. Patvirtinus: *Sitemaps* → įrašyk `sitemap.xml` → *Submit*
+5. *URL Inspection* → įklijuok `https://tomaslebedevas.photography/` → *Request indexing*. Tą patį pakartok su trimis darbų puslapiais.
+
+Indeksavimas trunka nuo poros dienų iki poros savaičių. Search Console po to
+rodo, ar puslapiai priimti ir su kokiomis užklausomis randami.
+
+**2. Bing Webmaster Tools** — [bing.com/webmasters](https://www.bing.com/webmasters). Įsileidžia ir iš Google Search Console vienu mygtuku. Iš čia semiasi Bing, DuckDuckGo ir ChatGPT paieška.
+
+**3. Nuorodos iš šalies.** Google naują domeną randa greičiau, kai į jį veda
+nuorodos. Įdėk adresą į Instagram profilio laukelį, LinkedIn, el. pašto parašą.
+Viena tikra nuoroda iš gyvo profilio vertingesnė nei dešimt katalogų.
+
+**Ko tikėtis.** Pagal savo vardą — „Tomas Lebedevas photography“ — puslapis
+turėtų atsirasti pirmas: domenas, `title` ir tekstas sutampa, konkurencijos
+nėra. Pagal bendrus žodžius („travel photography“) statinis portfolio
+nekonkuruos, ir tai normalu — portfolio randamas pagal vardą.
+
 ## Peržiūra kompiuteryje
 
 Atsidaryk `index.html` naršyklėje — veikia ir be serverio.
@@ -95,6 +134,7 @@ Atsidaryk `index.html` naršyklėje — veikia ir be serverio.
 | `photos/puslapiai.txt` | **Atranka ir tvarka** — kas į kurį puslapį patenka |
 | `assets/style.css` | Išvaizda, spalvos (viršuje `:root`) |
 | `assets/app.js` | Nuotraukos lango (lightbox) veikimas |
+| `sitemap.xml` | **Generuojamas** `tools/sitemap.ps1` — nekeisk ranka |
 | `sw.js` | Talpyklos versija — didinti po kiekvieno pakeitimo |
 | `index.html` | Hero nuotrauka, „About“, kontaktai |
 

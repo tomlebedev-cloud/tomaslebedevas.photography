@@ -152,6 +152,7 @@ img{max-width:100%}
   text-align:center;
   padding:68px 28px 76px;
 }
+.sekcija__juosta h1,
 .sekcija__juosta h2{
   font-family:var(--serif);
   margin:0 0 10px;
